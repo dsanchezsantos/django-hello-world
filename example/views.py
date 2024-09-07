@@ -1,16 +1,14 @@
 # example/views.py
-from datetime import datetime
-
 from django.http import HttpResponse
+from django.shortcuts import render
+
+from datetime import datetime
 
 def index(request):
     now = datetime.now().strftime("%d/%m/%Y %H:%M")
-    html = f'''
-    <html>
-        <body>
-            <h1>Datazo Consultoria Teste</h1>
-            <p>Horário atual { now }.</p>
-        </body>
-    </html>
-    '''
-    return HttpResponse(html)
+    
+    context = {
+        'now': now
+    }
+
+    return render(request, 'index.html', context)
